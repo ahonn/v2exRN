@@ -4,7 +4,8 @@ import {
   View,
   Image,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 import { parseImgUrl } from '../utils';
 
@@ -15,14 +16,30 @@ export default class TopicRow extends Component {
 
     return (
       <TouchableHighlight
-        key={topic.id}>
+        key={topic.id}
+        underlayColor='#EAEAEA' 
+        onPress={() => {}}>
         <View style={styles.row}>
-          <View style={styles.imgWrapper}>
+          <View>
             <Image
               ref={view => this.avatar = view}
               style={[styles.avatar]}
               source={{uri: parseImgUrl(topic.member.avatar_normal)}}>
             </Image>
+          </View>
+          <View style={styles.topic}>
+            <Text
+              style={styles.title}
+              ref={view => this.title = view}
+              numberOfLines={1} >
+              {topic.title}
+            </Text>
+            <Text style={styles.info}>
+              {topic.member.username} - {topic.node.title}
+            </Text>
+          </View>
+          <View style={styles.replies}>
+            <Text style={styles.number}>{topic.replies}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -30,20 +47,44 @@ export default class TopicRow extends Component {
   }
 }
 
+const { width } = Dimensions.get('window');
 var styles = StyleSheet.create({
-  "row": {
-		"height": 80,
-		"padding": 20,
-		"flexDirection": "row",
-		"borderBottomColor": "rgba(0, 0, 0, 0.05)",
-		"borderBottomWidth": 1,
+  row: {
+		height: 80,
+		padding: 20,
+		flexDirection: "row",
+		borderBottomColor: "rgba(0, 0, 0, 0.05)",
+		borderBottomWidth: 1,
 	},
-	"imgWrapper": {
-		
-	},
-  "avatar": {
-    "height": 40,
-    "width": 40,
-    "borderRadius": 20
+  avatar: {
+    height: 40,
+    width: 40,
+    borderRadius: 20
+  },
+  topic: {
+    marginLeft: 15,
+    width: width - 130
+  },
+  title: {
+    color: '#334',
+    fontSize: 15
+  },
+  info: {
+    marginTop: 5,
+    fontSize: 12
+  },
+  replies: {
+    height: 18,
+    position: "absolute",
+    top: 20,
+    right: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: '#334',
+    borderRadius: 10,
+  },
+  number: {
+    fontSize: 12,
+    color: '#fff',
   }
 });

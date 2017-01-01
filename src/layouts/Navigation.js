@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, Text } from 'react-native';
+import { View, StatusBar, Navigator, StyleSheet } from 'react-native';
 import connectComponent from '../utils/connectComponent';
 import * as HomeComponent from './Home';
 
@@ -25,11 +25,24 @@ export default class Navigation extends Component {
 
   render() {
     return (
-      <Navigator
-        ref = {view => this.navigator = view}
-        initialRoute = {initialRoute}
-        renderScene = {this.renderScene.bind(this)}
-      />
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor="#334"
+          barStyle="light-content"
+        />
+        <Navigator
+          ref = {view => this.navigator = view}
+          initialRoute = {initialRoute}
+          renderScene = {this.renderScene.bind(this)}
+        />
+      </View>
     );
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+});
