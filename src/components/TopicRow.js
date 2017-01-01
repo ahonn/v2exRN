@@ -34,9 +34,15 @@ export default class TopicRow extends Component {
               numberOfLines={1} >
               {topic.title}
             </Text>
-            <Text style={styles.info}>
-              {topic.member.username} - {topic.node.title}
-            </Text>
+            <View style={styles.info}>
+              <Text style={styles.text}>
+                {topic.member.username} 
+              </Text>
+              <Text style={styles.text}> - </Text>
+              <Text style={styles.text}>
+                {topic.node.title}
+              </Text>
+            </View>
           </View>
           <View style={styles.replies}>
             <Text style={styles.number}>{topic.replies}</Text>
@@ -71,7 +77,10 @@ var styles = StyleSheet.create({
   },
   info: {
     marginTop: 5,
-    fontSize: 12
+    flexDirection: "row",
+  },
+  text: {
+    fontSize: 12,
   },
   replies: {
     height: 18,
