@@ -18,7 +18,7 @@ export default class TopicRow extends Component {
       <TouchableHighlight
         key={topic.id}
         underlayColor='#EAEAEA' 
-        onPress={() => {}}>
+        onPress={() => {this.props.onPress(topic)}}>
         <View style={styles.row}>
           <View>
             <Image

@@ -5,6 +5,7 @@ import {
   RefreshControl
 } from 'react-native';
 import TopicRow from '../components/TopicRow';
+import Topic from './Topic';
 
 class TopicList extends Component {
   constructor(props) {
@@ -45,11 +46,21 @@ class TopicList extends Component {
     }, 500)
   }
 
+  _onPressItem(topic) {
+    const { router } = this.props;
+    router.push({
+      name: 'topic',
+      component: Topic,
+      topic
+    });
+  }
+
   _renderRow(topic) {
     return (
       <TopicRow
         key={topic.id}
         topic={topic}
+        onPress={this._onPressItem.bind(this)}
       />
     );  
   }

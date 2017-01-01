@@ -37,12 +37,15 @@ class Home extends Component {
   }
 
   _renderTopicList() {
+    const { router } = this.props;
+
     return defaultTabs.map(item => {
       return (
         <TopicList
           key={item.tab}
           tab={item.tab}
           tabLabel={item.name}
+          router={router}
         />
       );
     });
@@ -70,15 +73,15 @@ class Home extends Component {
             style={styles.toolbar}
             navIconName="md-menu"
             onIconClicked={() => this.drawer.openDrawer()} />
-          <ScrollableTabView 
-            renderTabBar={() => <SimpleTabBar />}
-            tabBarBackgroundColor="#334"
-            tabBarActiveTextColor="#FFF"
-            tabBarInactiveTextColor="#EEE"
-            tabBarUnderlineStyle={{backgroundColor: '#FFF'}}
-          >
-            { this._renderTopicList() }
-          </ScrollableTabView>
+            <ScrollableTabView 
+              renderTabBar={() => <SimpleTabBar />}
+              tabBarBackgroundColor="#334"
+              tabBarActiveTextColor="#FFF"
+              tabBarInactiveTextColor="#EEE"
+              tabBarUnderlineStyle={{backgroundColor: '#FFF'}}
+            >
+              { this._renderTopicList() }
+            </ScrollableTabView>
         </View>
       </DrawerLayoutAndroid>
     );

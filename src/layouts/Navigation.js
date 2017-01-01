@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Navigator, StyleSheet } from 'react-native';
+import {
+  View, 
+  StatusBar, 
+  Navigator, 
+  StyleSheet,
+  Platform,
+  BackAndroid
+} from 'react-native';
+import Router from '../router';
 import connectComponent from '../utils/connectComponent';
 import * as HomeComponent from './Home';
 
@@ -10,10 +18,15 @@ const initialRoute = {
 };
 
 export default class Navigation extends Component {
-
   renderScene(route, navigator) {
 		let Component = route.component;
-    return <Component {...route.params} navigator={navigator} />
+    this.router = this.router || new Router(navigator);
+    return (
+      <Component 
+        {...route.params}
+        router={this.router}
+        route={route} />
+    );
 	}
 
   configureScene(route) {
@@ -31,8 +44,8 @@ export default class Navigation extends Component {
           barStyle="light-content"
         />
         <Navigator
-          ref = {view => this.navigator = view}
           initialRoute = {initialRoute}
+          configureScene={this.configureScene.bind(this)}
           renderScene = {this.renderScene.bind(this)}
         />
       </View>
