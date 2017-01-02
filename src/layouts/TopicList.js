@@ -4,8 +4,11 @@ import {
   ListView,
   RefreshControl
 } from 'react-native';
-import Topic from './Topic';
+import * as TopicComonent from './Topic';
 import TopicRow from '../components/TopicRow';
+import connectComponent from '../utils/connectComponent';
+
+const Topic = connectComponent(TopicComonent);
 
 class TopicList extends Component {
   constructor(props) {

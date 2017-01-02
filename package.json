@@ -11,6 +11,7 @@
     "query-string": "^4.2.3",
     "react": "15.4.1",
     "react-native": "0.39.2",
+    "react-native-html-render": "^1.0.5",
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^5.0.1",

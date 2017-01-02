@@ -20,3 +20,15 @@ export function getLatestTopics() {
 export function getHotTopics() {
   return request.post('/topics/hot.json').then(filterData);
 }
+
+export function getTopicById(id) {
+  return request.get('/topics/show.json', {
+    id
+  }).then(filterData);
+}
+
+export function getTopicRepliesById(id) {
+  return request.get('/replies/show.json', {
+    topic_id: id
+  }).then(filterData);
+}

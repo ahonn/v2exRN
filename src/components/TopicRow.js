@@ -122,7 +122,7 @@ var styles = StyleSheet.create({
     right: 20,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#334',
+    backgroundColor: '#aab0c6',
     borderRadius: 10,
   },
   number: {
