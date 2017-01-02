@@ -46,7 +46,7 @@ class TopicList extends Component {
     setTimeout(() => {
       actions.getTopicsByTab(tab);
       this.setState({ isRefreshing: false })
-    }, 500)
+    }, 1000)
   }
 
   _onPressItem(topic) {

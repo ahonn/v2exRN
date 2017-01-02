@@ -8,11 +8,12 @@ import {
   Share,
   Linking,
   TouchableOpacity,
-  Image
+  Image,
+  RefreshControl
 } from 'react-native';
-import Comments from '../components/Comments';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HtmlRender from 'react-native-html-render';
+import Comments from './Comments';
 import { parseImgUrl } from '../utils';
 import moment from 'moment';
 
@@ -30,13 +31,14 @@ class Topic extends Component {
     this.state = {
       topic: props.topic,
       replies: [],
+      isRefreshing: false,
     }
   }
 
   componentDidMount() {
     const { replies, topic } = this.state; 
     const { actions } = this.props;
-    if (replies.length <= 0) {
+    if (replies.length < topic.replies) {
       actions.updateTopicRepliesById(topic.id);
     }
   }
@@ -44,15 +46,7 @@ class Topic extends Component {
   componentWillReceiveProps(nextProps) {
     const { id } = this.state.topic;
 
-    if (nextProps.topic !== this.props.topic) {
-      nextProps.topic.then(topic => {
-        this.setState({
-          topic: topic[0],
-        })
-      });
-    }
-
-		if (nextProps.replies !== this.props.replies) {
+    if (nextProps.replies !== this.props.replies) {
       nextProps.replies.then(replies => {
         this.setState({
           replies: replies,
@@ -65,8 +59,11 @@ class Topic extends Component {
     const { id } = this.state.topic;
     const { actions } = this.props;
 
-    actions.updateTopicById(id);
-    actions.updateTopicRepliesById(id);
+    this.setState({ isRefreshing: true });
+    setTimeout(() => {
+      actions.updateTopicRepliesById(id);
+      this.setState({ isRefreshing: false })
+    }, 1000)
   }
 
   _onIconClicked() {
@@ -98,35 +95,42 @@ class Topic extends Component {
     const date = moment.unix(topic.created).fromNow();
 
     return (
-      <ScrollView style={styles.content}>
-        <View style={styles.header}>
-          <View style={styles.titleWrapper}>
-            <Text style={styles.title}>
-              {topic.title}
-            </Text>
-          </View>
-          <View style={styles.info}>
-            <TouchableOpacity>
-              <Image
-                style={[styles.avatar]}
-                source={{uri: avatar}}>
-              </Image>
-            </TouchableOpacity>
-            <View style={styles.author}>
-              <Text style={styles.username}>
-                {topic.member.username}
-              </Text>
-              <Text style={styles.date}>
-                {date}
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing} 
+            onRefresh={this._onRefresh.bind(this)} />
+        }>
+        <View style={styles.content} >
+          <View style={styles.header}>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.title}>
+                {topic.title}
               </Text>
             </View>
-            <View style={styles.replyNum}>
-              <Text>{topic.replies}</Text>
+            <View style={styles.info}>
+              <TouchableOpacity>
+                <Image
+                  style={[styles.avatar]}
+                  source={{uri: avatar}}>
+                </Image>
+              </TouchableOpacity>
+              <View style={styles.author}>
+                <Text style={styles.username}>
+                  {topic.member.username}
+                </Text>
+                <Text style={styles.date}>
+                  {date}
+                </Text>
+              </View>
+              <View style={styles.replyNum}>
+                <Text>{topic.replies}</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        {this._renderTopicHtml(topic)}
+          {this._renderTopicHtml(topic)}
+        </View>
       </ScrollView>
     );
   }
@@ -134,15 +138,23 @@ class Topic extends Component {
   _renderTopicHtml(topic) {
     const content = topic.content_rendered
     const html = `<p>${content}</p>`;
-
     return (
-      <View style={styles.topicContent}>
+      <View>
         <HtmlRender
           value={html}
           stylesheet={htmlStyles}
-          onLinkPress={url => Linking.openURL(url)} />
+          onLinkPress={url => Linking.openURL(url)}
+        />
+        {this._renderComment(topic)}
       </View>
     );
+  }
+
+  _renderComment(topic) {
+    const hasComment = topic.replies > 0;
+    if (hasComment) {
+      return <Comments replies={this.state.replies} />
+    }
   }
 
   render() {
@@ -160,10 +172,18 @@ class Topic extends Component {
           onActionSelected={this._onActionSelected.bind(this)} />
 
         {this._renderContent(topic)}
-        <Comments 
-          data={this.state.replies} />
       </View>      
     );
+  }
+}
+
+export const LayoutComponent = Topic;
+export function mapStateToProps(state, props) {
+  const { id } = props.route.topic;
+  const { replies } = state.topic;
+  return {
+    topic: props.route.topic,
+    replies: replies[id]
   }
 }
 
@@ -176,15 +196,13 @@ var styles = StyleSheet.create({
     height: 56,
     backgroundColor: '#334',
   },
-  content: {
-    padding: 10,
-  },
   header: {
+    padding: 10,
     marginBottom: 5,
   },
   titleWrapper: {
     padding: 10,
-    backgroundColor: '#e2e2e2',
+    backgroundColor: '#f2f2f2',
     borderRadius: 5,
   },
   title: {
@@ -217,28 +235,16 @@ var styles = StyleSheet.create({
     backgroundColor: '#e2e2e2',
     borderRadius: 10,
   },
-  topicContent: {
-    padding: 5,
-  }
 });
 
 var htmlStyles = StyleSheet.create({
   pwrapper: {
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
+    paddingLeft: 15,
+    paddingRight: 15
   },
   p: {
     fontSize: 14,
   }
 });
-
-export const LayoutComponent = Topic;
-export function mapStateToProps(state, props) {
-  const { id } = props.route.topic;
-  const { replies } = state.topic;
-  const topic = state.topic.topics[id];
-  return {
-    topic: topic || props.route.topic,
-    replies: replies[id]
-  }
-}
