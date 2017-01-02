@@ -45,8 +45,8 @@ class TopicList extends Component {
     this.setState({ isRefreshing: true });
     setTimeout(() => {
       actions.getTopicsByTab(tab);
-      this.setState({ isRefreshing: false })
-    }, 1000)
+      this.setState({ isRefreshing: false });
+    }, 1000);
   }
 
   _onPressItem(topic) {
@@ -93,5 +93,5 @@ export function mapStateToProps(state, props) {
   const topics = state.topic[tab];
   return {
     data: topics,
-  }
+  };
 }

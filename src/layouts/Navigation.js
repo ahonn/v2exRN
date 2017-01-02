@@ -31,9 +31,9 @@ export default class Navigation extends Component {
 
   configureScene(route) {
 		if (route.sceneConfig) {
-			return route.sceneConfig
+			return route.sceneConfig;
 		}
-		return Navigator.SceneConfigs.FadeAndroid
+		return Navigator.SceneConfigs.FadeAndroid;
 	}
 
   render() {

@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
           ...state.topics,
           [id]: payload,
         }
-      }
+      };
     case types.UPDATE_TOPIC_REPLIES_BY_ID:
       return {
         ...state,
@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
           ...state.replies,
           [id]: payload,
         }
-      }
+      };
     default:
       return state;
   }

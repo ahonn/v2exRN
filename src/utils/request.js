@@ -27,8 +27,8 @@ export function get(url, params) {
 	}
 
 	if (isDebuggingInChrome) {
-		console.info(`GET: `, url);
-		console.info(`Params: `, params)
+		console.info('GET: ', url);
+		console.info('Params: ', params);
 	}
 
 	return fetch(url)
@@ -40,8 +40,8 @@ export function post(url, body) {
 	url = urlPrefix + url;
 
 	if (isDebuggingInChrome) {
-		console.info(`POST: `, url);
-		console.info(`Body: `, body);
+		console.info('POST: ', url);
+		console.info('Body: ', body);
 	}
 
 	return fetch(url, {

@@ -20,7 +20,7 @@ export default class TopicRow extends Component {
       <TouchableHighlight
         key={topic.id}
         underlayColor='#EAEAEA' 
-        onPress={() => {this.props.onPress(topic)}}>
+        onPress={() => this.props.onPress(topic)}>
         <View style={styles.row}>
           <View>
             <Image
@@ -68,8 +68,8 @@ var styles = StyleSheet.create({
   row: {
 		height: 80,
 		padding: 20,
-		flexDirection: "row",
-		borderBottomColor: "rgba(0, 0, 0, 0.05)",
+		flexDirection: 'row',
+		borderBottomColor: 'rgba(0, 0, 0, 0.05)',
 		borderBottomWidth: 1,
 	},
   avatar: {
@@ -90,10 +90,7 @@ var styles = StyleSheet.create({
   },
   info: {
     marginTop: 5,
-    flexDirection: "row",
-  },
-  username: {
-    fontSize: 12,
+    flexDirection: 'row',
   },
   nodeWrapper: {
     paddingLeft: 5,
@@ -117,7 +114,7 @@ var styles = StyleSheet.create({
   },
   replies: {
     height: 18,
-    position: "absolute",
+    position: 'absolute',
     top: 20,
     right: 20,
     paddingLeft: 10,

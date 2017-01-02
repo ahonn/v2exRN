@@ -86,49 +86,49 @@ export default class Comments extends Component {
 var styles = StyleSheet.create({
   replies: {
     marginTop: 15,
-    borderTopColor: "rgba(0, 0, 0, 0.05)",
+    borderTopColor: 'rgba(0, 0, 0, 0.05)',
 		borderTopWidth: 1,
     backgroundColor: '#f2f2f2',
   },
   reply: {
     padding: 10,
     
-    borderBottomColor: "rgba(0, 0, 0, 0.05)",
+    borderBottomColor: 'rgba(0, 0, 0, 0.05)',
 		borderBottomWidth: 1,
   },
   header: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   avatar: {
-    height: 25,
-    width: 25,
+    height: 30,
+    width: 30,
     borderRadius: 20,
     marginRight: 10,
   },
   info: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   usernameWrapper: {
     marginRight: 10,
   },
   username: {
-    fontSize: 13,
+    fontSize: 14,
   },
   dateWrapper: {
     marginRight: 10,
   },
   date: {
-    fontSize: 12,
+    fontSize: 14,
   },
   floorWrapper: {
-    position: "absolute",
+    position: 'absolute',
     right: 5,
   },
   floor: {
-    fontSize: 11,
+    fontSize: 12,
   },
   content: {
-    marginLeft: 20,
+    marginLeft: 25,
   }
 });
 
@@ -141,10 +141,10 @@ var htmlStyles = StyleSheet.create({
     paddingRight: 15
   },
   p: {
-    fontSize: 12,
+    fontSize: 14,
   },
   a: {
     color: '#4078c0',
-    fontSize: 12,
+    fontSize: 14,
   }
 });

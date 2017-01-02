@@ -17,7 +17,7 @@ const TopicList = connectComponent(TopicListComponent);
 
 const toolBarConfig = {
   title: '浏览'
-}
+};
 
 class Home extends Component {
   componentDidMount() {
@@ -73,7 +73,7 @@ class Home extends Component {
               tabBarBackgroundColor="#334"
               tabBarActiveTextColor="#FFF"
               tabBarInactiveTextColor="#EEE"
-              tabBarUnderlineStyle={{backgroundColor: '#FFF'}}
+              tabBarUnderlineStyle={styles.tabbar}
             >
               { this._renderTopicList() }
             </ScrollableTabView>
@@ -87,7 +87,7 @@ export const LayoutComponent = Home;
 export function mapStateToProps(state) {
   return {
     topic: state.topic,
-  }
+  };
 }
 
 var styles = StyleSheet.create({
@@ -99,4 +99,7 @@ var styles = StyleSheet.create({
     height: 56,
     backgroundColor: '#334',
   },
+  tabbar: {
+    backgroundColor: '#FFF',
+  }
 });

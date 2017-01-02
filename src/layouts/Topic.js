@@ -32,7 +32,7 @@ class Topic extends Component {
       topic: props.topic,
       replies: [],
       isRefreshing: false,
-    }
+    };
   }
 
   componentDidMount() {
@@ -44,8 +44,6 @@ class Topic extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { id } = this.state.topic;
-
     if (nextProps.replies !== this.props.replies) {
       nextProps.replies.then(replies => {
         this.setState({
@@ -62,8 +60,8 @@ class Topic extends Component {
     this.setState({ isRefreshing: true });
     setTimeout(() => {
       actions.updateTopicRepliesById(id);
-      this.setState({ isRefreshing: false })
-    }, 1000)
+      this.setState({ isRefreshing: false });
+    }, 1000);
   }
 
   _onIconClicked() {
@@ -100,7 +98,7 @@ class Topic extends Component {
           <RefreshControl
             refreshing={this.state.isRefreshing} 
             onRefresh={this._onRefresh.bind(this)} />
-        }>
+      }>
         <View style={styles.content} >
           <View style={styles.header}>
             <View style={styles.titleWrapper}>
@@ -136,7 +134,7 @@ class Topic extends Component {
   }
 
   _renderTopicHtml(topic) {
-    const content = topic.content_rendered
+    const content = topic.content_rendered;
     const html = `<p>${content}</p>`;
     return (
       <View>
@@ -153,12 +151,12 @@ class Topic extends Component {
   _renderComment(topic) {
     const hasComment = topic.replies > 0;
     if (hasComment) {
-      return <Comments replies={this.state.replies} />
+      return <Comments replies={this.state.replies} />;
     }
   }
 
   render() {
-    const { topic } = this.state
+    const { topic } = this.state;
 
     return (
       <View style={styles.container}>
@@ -184,7 +182,7 @@ export function mapStateToProps(state, props) {
   return {
     topic: props.route.topic,
     replies: replies[id]
-  }
+  };
 }
 
 var styles = StyleSheet.create({
@@ -211,7 +209,7 @@ var styles = StyleSheet.create({
   },
   info: {
     paddingTop: 10,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   avatar: {
     height: 40,
@@ -220,14 +218,14 @@ var styles = StyleSheet.create({
     marginRight: 10,
   },
   username: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '500',
   },
   date: {
-    fontSize: 13
+    fontSize: 14
   },
   replyNum: {
-    position: "absolute",
+    position: 'absolute',
     right: 5,
     bottom: 0,
     paddingLeft: 10,

@@ -16,7 +16,7 @@ export default function connectComponent({ mapStateToProps, mapDispatchToProps, 
 		mapDispatchToProps || function (dispatch) {
 			return {
 				actions: bindActionCreators(actions, dispatch)
-			}
+			};
 		},
 		mergeProps,
 		options
