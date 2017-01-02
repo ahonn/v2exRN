@@ -8,11 +8,13 @@ import {
   Dimensions
 } from 'react-native';
 import { parseImgUrl } from '../utils';
+import moment from 'moment';
 
 export default class TopicRow extends Component {
 
   render() {
     const { topic } = this.props;
+    const date = moment.unix(topic.created).fromNow();
 
     return (
       <TouchableHighlight
@@ -28,19 +30,27 @@ export default class TopicRow extends Component {
             </Image>
           </View>
           <View style={styles.topic}>
-            <Text
-              style={styles.title}
-              ref={view => this.title = view}
-              numberOfLines={1} >
-              {topic.title}
-            </Text>
-            <View style={styles.info}>
-              <Text style={styles.text}>
-                {topic.member.username} 
+            <View style={styles.titleWrapper}>
+              <Text
+                style={styles.title}
+                ref={view => this.title = view}
+                numberOfLines={1} >
+                {topic.title}
               </Text>
-              <Text style={styles.text}> - </Text>
-              <Text style={styles.text}>
-                {topic.node.title}
+            </View>
+            <View style={styles.info}>
+              <View style={styles.nodeWrapper}>
+                <Text style={styles.node}>
+                  {topic.node.title}
+                </Text>
+              </View>
+              <View style={styles.usernameWrapper}>
+                <Text style={styles.username}>
+                  {topic.member.username} 
+                </Text>
+              </View>
+              <Text style={styles.date}>
+                {date}
               </Text>
             </View>
           </View>
@@ -69,6 +79,9 @@ var styles = StyleSheet.create({
   },
   topic: {
     marginLeft: 15,
+    width: width - 100
+  },
+  titleWrapper: {
     width: width - 130
   },
   title: {
@@ -79,14 +92,34 @@ var styles = StyleSheet.create({
     marginTop: 5,
     flexDirection: "row",
   },
-  text: {
+  username: {
+    fontSize: 12,
+  },
+  nodeWrapper: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
+  },
+  node: {
+    fontSize: 10,
+  },
+  usernameWrapper: {
+    marginRight: 10,
+  },
+  username: {
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  date: {
     fontSize: 12,
   },
   replies: {
     height: 18,
     position: "absolute",
     top: 20,
-    right: 15,
+    right: 20,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#334',

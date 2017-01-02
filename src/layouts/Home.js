@@ -15,14 +15,11 @@ import connectComponent from '../utils/connectComponent';
 
 const TopicList = connectComponent(TopicListComponent);
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '浏览'
-    }
-  }
+const toolBarConfig = {
+  title: '浏览'
+}
 
+class Home extends Component {
   componentDidMount() {
     defaultTabs.forEach(item => {
       this._getTopics(item.tab);
@@ -58,17 +55,15 @@ class Home extends Component {
       </View>
     );
 
-    const { title, actions } = this.state;
-
     return (
       <DrawerLayoutAndroid
         ref={view => this.drawer = view}
-        drawerWidth={300}
+        drawerWidth={250}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => navigationView}>
         <View style={styles.container}>
           <Icon.ToolbarAndroid
-            title={title}
+            title={toolBarConfig.title}
             titleColor="#fff"
             style={styles.toolbar}
             navIconName="md-menu"

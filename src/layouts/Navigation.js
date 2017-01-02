@@ -7,7 +7,7 @@ import {
   Platform,
   BackAndroid
 } from 'react-native';
-import Router from '../router';
+import Router from '../router/Router';
 import connectComponent from '../utils/connectComponent';
 import * as HomeComponent from './Home';
 
