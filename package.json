@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "build": "cd android && ./gradlew assembleRelease && open app/build/outputs/apk && cd ..",
     "test": "jest"
   },
   "dependencies": {
@@ -13,6 +15,7 @@
     "react-native": "0.39.2",
     "react-native-html-render": "^1.0.5",
     "react-native-scrollable-tab-view": "^0.7.0",
+    "react-native-splash-screen": "^1.0.9",
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
