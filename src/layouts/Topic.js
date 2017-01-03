@@ -37,7 +37,6 @@ class Topic extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.replies !== this.props.replies) {
       nextProps.replies.then(replies => {
         this.setState({
@@ -83,7 +82,6 @@ class Topic extends Component {
   }
 
   _showComments() {
-    console.log('show');
     const { id } = this.state.topic;
     const { actions } = this.props;
 

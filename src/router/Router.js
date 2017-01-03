@@ -21,7 +21,7 @@ export default class Router {
     this.navigator.push(props);
   }
 
-  pop(props) {
+  pop() {
     this.navigator.pop();
   }
 }

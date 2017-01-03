@@ -20,10 +20,9 @@ class TopicList extends Component {
     };
   }
 
-  componentWillMount() {
-    let data = this.props.data;
-    data.then && this._updateData(data);
-  }  
+  componentDidMount() {
+    this._onRefresh();
+  }
 
   componentWillReceiveProps(nextProps) {
 		if (nextProps.data !== this.props.data) {
