@@ -32,18 +32,12 @@ class Topic extends Component {
       topic: props.topic,
       replies: [],
       isRefreshing: false,
+      showComments: false,
     };
   }
 
-  componentDidMount() {
-    const { replies, topic } = this.state; 
-    const { actions } = this.props;
-    if (replies.length < topic.replies) {
-      actions.updateTopicRepliesById(topic.id);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (nextProps.replies !== this.props.replies) {
       nextProps.replies.then(replies => {
         this.setState({
@@ -88,6 +82,17 @@ class Topic extends Component {
     }
   }
 
+  _showComments() {
+    console.log('show');
+    const { id } = this.state.topic;
+    const { actions } = this.props;
+
+    this.setState({
+      showComments: true
+    });
+    actions.updateTopicRepliesById(id);
+  }
+
   _renderContent(topic) {
     const avatar = parseImgUrl(topic.member.avatar_normal);
     const date = moment.unix(topic.created).fromNow();
@@ -127,31 +132,52 @@ class Topic extends Component {
             </View>
           </View>
 
-          {this._renderTopicHtml(topic)}
+          {this._renderTopicContent(topic)}
+          {this._renderComment(topic)}
         </View>
       </ScrollView>
     );
   }
 
-  _renderTopicHtml(topic) {
+  _renderTopicContent(topic) {
     const content = topic.content_rendered;
     const html = `<p>${content}</p>`;
     return (
-      <View>
-        <HtmlRender
-          value={html}
-          stylesheet={htmlStyles}
-          onLinkPress={url => Linking.openURL(url)}
-        />
-        {this._renderComment(topic)}
+      <View style={styles.topicContent}>
+        <View style={styles.html}> 
+          <HtmlRender
+            value={html}
+            stylesheet={htmlStyles}
+            onLinkPress={url => Linking.openURL(url)}
+          />
+        </View>
       </View>
     );
   }
 
   _renderComment(topic) {
-    const hasComment = topic.replies > 0;
-    if (hasComment) {
-      return <Comments replies={this.state.replies} />;
+    const { replies, showComments } = this.state;
+    if (topic.replies > 0) {
+      if (showComments) {
+        return <Comments replies={replies} />;
+      } else {
+        return (
+          <View style={styles.commentWrapper}>
+            <Text 
+              style={styles.viewComment}
+              onPress={this._showComments.bind(this)}
+            > 
+              查看评论
+            </Text>
+          </View>
+        );
+      }
+    } else {
+      return (
+        <View style={styles.commentWrapper}>
+          <Text style={styles.viewComment}> 暂无评论 </Text>
+        </View>
+      );
     }
   }
 
@@ -200,7 +226,7 @@ var styles = StyleSheet.create({
   },
   titleWrapper: {
     padding: 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#efefef',
     borderRadius: 5,
   },
   title: {
@@ -233,14 +259,26 @@ var styles = StyleSheet.create({
     backgroundColor: '#e2e2e2',
     borderRadius: 10,
   },
+  html: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    flexDirection: 'row',
+  },
+  commentWrapper: {
+    marginTop: 15,
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: '#f2f2f2',
+  },
+  viewComment: {
+    textAlign: 'center',
+  }
 });
 
 var htmlStyles = StyleSheet.create({
   pwrapper: {
     marginTop: 5,
     marginBottom: 5,
-    paddingLeft: 15,
-    paddingRight: 15
   },
   p: {
     fontSize: 14,

@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Image,
   Linking,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import HtmlRender from 'react-native-html-render';
 import { parseImgUrl } from '../utils';
@@ -16,14 +17,28 @@ export default class Comments extends Component {
     super(props);
     this.state = {
       replies: props.replies,
+      isLoading: true,
     };
+  }
+
+  componentDidMount() {
+    this._handleLoading(this.state.replies);
   }
 
   componentWillReceiveProps(nextProps) {
 		if (nextProps.replies !== this.props.replies) {
 			this._updateReplies(nextProps.replies);
+      this._handleLoading(nextProps.replies);
 		}
 	}
+
+ _handleLoading(replies) {
+    if (replies.length) {
+      this.setState({
+        isLoading: false,
+      });
+    }
+ }
 
   _updateReplies(data) {
     this.setState({
@@ -31,7 +46,7 @@ export default class Comments extends Component {
     });
   }
 
-  render() {
+  _renderComments() {
     const { replies } = this.state;
     return (
       <View style={styles.replies}>
@@ -81,9 +96,27 @@ export default class Comments extends Component {
       </View>
     );
   }
+
+  render() {
+    const { isLoading } = this.state;
+    if (isLoading) {
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicator />
+        </View>
+      );
+    } else {
+      return this._renderComments();
+    }
+  }
 }
 
 var styles = StyleSheet.create({
+  loading: {
+    marginTop: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
   replies: {
     marginTop: 15,
     borderTopColor: 'rgba(0, 0, 0, 0.05)',
@@ -92,7 +125,6 @@ var styles = StyleSheet.create({
   },
   reply: {
     padding: 10,
-    
     borderBottomColor: 'rgba(0, 0, 0, 0.05)',
 		borderBottomWidth: 1,
   },
