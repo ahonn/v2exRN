@@ -17,7 +17,8 @@
         "react-native"
     ],
     "globals": {
-        "__DEV__": true
+        "__DEV__": true,
+        "require": true
     },
     "rules": {
         "linebreak-style": [
