@@ -20,7 +20,7 @@ class TopicList extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let data = this.props.data;
     data.then && this._updateData(data);
   }  

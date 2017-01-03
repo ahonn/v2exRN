@@ -20,7 +20,7 @@ const toolBarConfig = {
 };
 
 class Home extends Component {
-  componentDidMount() {
+  componentWillMount() {
     defaultTabs.forEach(item => {
       this._getTopics(item.tab);
     });
