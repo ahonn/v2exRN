@@ -7,10 +7,10 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native';
-import { parseImgUrl } from '../utils';
+import { parseImgUrl } from '../../utils';
 import moment from 'moment';
 
-export default class TopicRow extends Component {
+class TopicListRow extends Component {
 
   render() {
     const { topic } = this.props;
@@ -127,3 +127,5 @@ var styles = StyleSheet.create({
     color: '#fff',
   }
 });
+
+export default TopicListRow;

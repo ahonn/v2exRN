@@ -1,7 +1,7 @@
 import qs from 'query-string';
 import config from '../config';
 
-const urlPrefix = config.domain + config.apiPath;
+const urlPrefix = config.api;
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
 function filterJSON(res) {

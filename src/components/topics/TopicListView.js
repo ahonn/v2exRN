@@ -4,11 +4,10 @@ import {
   ListView,
   RefreshControl
 } from 'react-native';
-import * as TopicComonent from './Topic';
-import TopicRow from '../components/TopicRow';
-import connectComponent from '../utils/connectComponent';
-
-const Topic = connectComponent(TopicComonent);
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../../actions';
+import TopicListRow from './TopicListRow';
 
 class TopicList extends Component {
   constructor(props) {
@@ -49,17 +48,14 @@ class TopicList extends Component {
   }
 
   _onPressItem(topic) {
-    const { router } = this.props;
-    router.push({
-      name: 'topic',
-      component: Topic,
+    this.props.navigator.push({
       topic
     });
   }
 
   _renderRow(topic) {
     return (
-      <TopicRow
+      <TopicListRow
         key={topic.id}
         topic={topic}
         onPress={this._onPressItem.bind(this)}
@@ -86,11 +82,18 @@ class TopicList extends Component {
   }
 }
 
-export const LayoutComponent = TopicList;
-export function mapStateToProps(state, props) {
+const mapStateToProps = (state, props) => {
   const { tab } = props;
   const topics = state.topic[tab];
   return {
     data: topics,
   };
-}
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicList);

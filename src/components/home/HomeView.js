@@ -6,35 +6,31 @@ import {
   DrawerLayoutAndroid,
   StyleSheet
 } from 'react-native';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import defaultTabs from '../constants/Tabs';
-import SimpleTabBar from '../components/SimpleTabBar';
-import * as TopicListComponent from './TopicList';
-import connectComponent from '../utils/connectComponent';
-
-const TopicList = connectComponent(TopicListComponent);
+import Icon from 'react-native-vector-icons/Ionicons';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import defaultTabs from '../../constants/Tabs';
+import TopicListView from '../topics/TopicListView';
+import SimpleTabBar from './SimpleTabBar';
 
 const toolBarConfig = {
   title: '浏览'
 };
 
-class Home extends Component {
+class HomeView extends Component {
   componentDidMount() {
     SplashScreen.hide();
   }
 
   _renderTopicList() {
-    const { router } = this.props;
-
     return defaultTabs.map(item => {
       return (
-        <TopicList
+        <TopicListView
           key={item.tab}
           tab={item.tab}
           tabLabel={item.name}
-          router={router}
+          navigator={this.props.navigator}
         />
       );
     });
@@ -63,14 +59,7 @@ class Home extends Component {
   }
 }
 
-export const LayoutComponent = Home;
-export function mapStateToProps(state) {
-  return {
-    topic: state.topic,
-  };
-}
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -84,3 +73,11 @@ var styles = StyleSheet.create({
     backgroundColor: '#FFF',
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    topic: state.topic,
+  };
+};
+
+export default connect(mapStateToProps)(HomeView);
