@@ -2,10 +2,8 @@
 **A React-Native Android Client for [V2EX](https://www.v2ex.com/)**
 
 ## Screenshots
-![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqt235pnj30u01hcwlj.jpg)
-![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqt4y8byj30u01hcgte.jpg)
-![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqsyuzw5j30u01hcdk3.jpg)
-![](https://ww1.sinaimg.cn/large/006tNc79gw1fbeqsuwh02j30u01hcgp2.jpg)
+![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqt235pnj30u01hcwlj.jpg)![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqt4y8byj30u01hcgte.jpg)
+![](https://ww2.sinaimg.cn/large/006tNc79gw1fbeqsyuzw5j30u01hcdk3.jpg)![](https://ww1.sinaimg.cn/large/006tNc79gw1fbeqsuwh02j30u01hcgp2.jpg)
 
 ## React-Native Modules In Using
 - react-native-splash-screen
