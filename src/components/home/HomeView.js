@@ -11,7 +11,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import defaultTabs from '../../constants/Tabs';
-import TopicListView from '../topics/TopicListView';
+import TopicList from '../topics/TopicList';
 import SimpleTabBar from './SimpleTabBar';
 
 const toolBarConfig = {
@@ -26,7 +26,7 @@ class HomeView extends Component {
   _renderTopicList() {
     return defaultTabs.map(item => {
       return (
-        <TopicListView
+        <TopicList
           key={item.tab}
           tab={item.tab}
           tabLabel={item.name}

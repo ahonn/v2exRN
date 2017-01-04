@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  nodes: []
+  all: []
 };
 
 export default function (state = initialState, action) {
@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
     case types.GET_ALL_NODES:
       return {
         ...state,
-        nodes: payload,
+        all: payload,
       };
     default:
       return state;
