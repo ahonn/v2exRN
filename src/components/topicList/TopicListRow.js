@@ -5,12 +5,19 @@ import {
   Image,
   TouchableHighlight,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import { parseImgUrl } from '../../utils';
 import moment from 'moment';
 
 class TopicListRow extends Component {
+
+  _onPressNode(node) {
+    this.props.navigator.push({
+      node
+    });
+  }
 
   render() {
     const { topic } = this.props;
@@ -20,7 +27,7 @@ class TopicListRow extends Component {
       <TouchableHighlight
         key={topic.id}
         underlayColor='#EAEAEA' 
-        onPress={() => this.props.onPress(topic)}>
+        onPress={this.props.onPress.bind(this, topic)}>
         <View style={styles.row}>
           <View>
             <Image
@@ -39,11 +46,14 @@ class TopicListRow extends Component {
               </Text>
             </View>
             <View style={styles.info}>
-              <View style={styles.nodeWrapper}>
+              <TouchableOpacity 
+                style={styles.nodeWrapper}
+                 onPress={this._onPressNode.bind(this, topic.node)}
+              >
                 <Text style={styles.node}>
                   {topic.node.title}
                 </Text>
-              </View>
+              </TouchableOpacity>
               <View style={styles.usernameWrapper}>
                 <Text style={styles.username}>
                   {topic.member.username} 
@@ -93,8 +103,10 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
   },
   nodeWrapper: {
-    paddingLeft: 5,
-    paddingRight: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 2,
+    paddingBottom: 2,
     marginRight: 10,
     backgroundColor: '#ddd',
     borderRadius: 5,

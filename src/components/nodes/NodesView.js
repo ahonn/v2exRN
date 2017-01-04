@@ -43,7 +43,8 @@ class NodesView extends Component {
     nodes.then(nodes => {
       this.setState({
         all: nodes,
-        nodes: nodes
+        nodes: nodes,
+        isRefreshing: false
       });
     });
 	}
@@ -52,8 +53,8 @@ class NodesView extends Component {
     this.setState({ isRefreshing: true });
     setTimeout(() => {
       this.props.actions.getAllNodes();
-      this.setState({ isRefreshing: false });
-    }, 1000);
+      setTimeout(() => this.setState({ isRefreshing: false }), 300);
+    }, 500);
   }
 
   _onChangeText(text) {
@@ -64,6 +65,12 @@ class NodesView extends Component {
     });
     this.setState({
       nodes: nodes,
+    });
+  }
+
+  _onPress(node) {
+    this.props.navigator.push({
+      node
     });
   }
 
@@ -85,7 +92,10 @@ class NodesView extends Component {
             }>
           <NodeSearch onChangeText={this._onChangeText.bind(this)} />
           <View style={styles.list}>
-            <NodeList nodes={this.state.nodes} />
+            <NodeList 
+              nodes={this.state.nodes}
+              onPress={this._onPress.bind(this)}
+            />
           </View>
         </ScrollView>
       </View>

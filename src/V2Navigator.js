@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux';
 import actions from './actions';
 import MenuView from './components/MenuView';
 import TopicView from './components/topic/TopicView';
+import TopicListView from './components/topicList/TopicListView';
 
 let backCount = 2;
 
@@ -32,11 +33,6 @@ class V2Navigator extends Component {
       return true;
     }
 
-    if (this.props.tab !== 'home') {
-      this.props.actions.switchTab('home');
-      return true;
-    }
-
     if (backCount > 1) {
       setTimeout(() => backCount = 2, 2000);
       ToastAndroid.show('再次点击退出应用', ToastAndroid.SHORT);
@@ -50,6 +46,8 @@ class V2Navigator extends Component {
   _renderScene(route, navigator) {
     if (route.topic) {
       return <TopicView navigator={navigator} topic={route.topic} />;
+    } else if (route.node) {
+      return <TopicListView navigator={navigator} node={route.node} />;
     }
     return <MenuView navigator={navigator} />;
 	}

@@ -28,7 +28,10 @@ class NodeList extends Component {
 
     return (
       <View style={styles.node}>
-        <Text style={styles.nodeText}>
+        <Text 
+          style={styles.nodeText}
+          onPress={this.props.onPress.bind(this, node)}
+        >
           {node.title}
         </Text>
       </View>
@@ -36,7 +39,6 @@ class NodeList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <ListView 

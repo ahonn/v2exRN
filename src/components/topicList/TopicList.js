@@ -32,7 +32,8 @@ class TopicList extends Component {
   _updateData(data) {
     data.then(arr => {
       this.setState({
-        ds: this.state.ds.cloneWithRows(arr)
+        ds: this.state.ds.cloneWithRows(arr),
+        isRefreshing: false
       });
     });
 	}
@@ -43,8 +44,8 @@ class TopicList extends Component {
     this.setState({ isRefreshing: true });
     setTimeout(() => {
       actions.getTopicsByTab(tab);
-      this.setState({ isRefreshing: false });
-    }, 1000);
+      setTimeout(() => this.setState({ isRefreshing: false }), 300);
+    }, 500);
   }
 
   _onPressItem(topic) {
@@ -59,6 +60,7 @@ class TopicList extends Component {
         key={topic.id}
         topic={topic}
         onPress={this._onPressItem.bind(this)}
+        navigator={this.props.navigator}
       />
     );  
   }

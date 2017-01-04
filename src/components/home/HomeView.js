@@ -11,7 +11,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import defaultTabs from '../../constants/Tabs';
-import TopicList from '../topics/TopicList';
+import TopicList from '../topicList/TopicList';
 import SimpleTabBar from './SimpleTabBar';
 
 const toolBarConfig = {
