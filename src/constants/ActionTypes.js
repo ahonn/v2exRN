@@ -1,7 +1,0 @@
-export const SWITCH_TAB = 'SWITCH_TAB';
-
-export const GET_TOPICS_BY_TAB = 'GET_TOPICS_BY_TAB';
-export const UPDATE_TOPIC_BY_ID = 'UPDATE_TOPIC_BY_ID';
-export const UPDATE_TOPIC_REPLIES_BY_ID = 'UPDATE_TOPIC_REPLIES_BY_ID';
-
-export const GET_ALL_NODES = 'GET_ALL_NODES';
