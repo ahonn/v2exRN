@@ -31,14 +31,12 @@ class App extends Component {
       component: Tabbar
     };
     return (
-      <View style={{ flex: 1 }}>
-      <StatusBar backgroundColor={theme.color.theme} />
-        <Navigator
-          initialRoute={initialRoute}
-          configureScene={this._configureScene}
-          renderScene={this._renderScene}
-        />
-      </View>
+      <Navigator
+        style={{ flex: 1 }}
+        initialRoute={initialRoute}
+        configureScene={this._configureScene}
+        renderScene={this._renderScene}
+      />
     );
   }
 }
