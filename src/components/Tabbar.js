@@ -7,12 +7,12 @@ import {
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Theme from '../config/theme';
 
 import HomePage from '../pages/HomePage';
 import NodesPage from '../pages/NodesPage';
 import NotifyPage from '../pages/NotifyPage';
 import UserPage from '../pages/UserPage';
+import theme from '../config/theme';
 
 const perfix = Platform.OS === 'ios' ? 'ios' : 'md';
 const tabs = [
@@ -37,15 +37,13 @@ class Tabbar extends Component {
   }
 
   _takeIcon(iconName, isSelect = false) {
-    const iconStyle = Theme.tabbar.icon;
+    const iconStyle = theme.tabbar.icon;
     const iconSize = iconStyle.size;
     const iconColor = isSelect ? iconStyle.selectedColor : iconStyle.normalColor;
     return <Icon name={iconName} size={iconSize} color={iconColor} />;
   }
 
   render() {
-    const iconColor = Theme.tabbar;
-    const iconSize = 30;
     return (
       <TabNavigator
         tabBarStyle={styles.tabbar}

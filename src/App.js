@@ -3,11 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  Navigator
+  Navigator,
+  StatusBar
 } from 'react-native';
 import HomePage from './pages/HomePage';
 import Tabbar from './components/Tabbar';
-
+import theme from './config/theme';
 
 class App extends Component {
   constructor(props) {
@@ -30,11 +31,14 @@ class App extends Component {
       component: Tabbar
     };
     return (
-      <Navigator
-        initialRoute={initialRoute}
-        configureScene={this._configureScene}
-        renderScene={this._renderScene}
-      />
+      <View style={{ flex: 1 }}>
+      <StatusBar backgroundColor={theme.color.theme} />
+        <Navigator
+          initialRoute={initialRoute}
+          configureScene={this._configureScene}
+          renderScene={this._renderScene}
+        />
+      </View>
     );
   }
 }
