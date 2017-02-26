@@ -7,6 +7,7 @@ import {
   RefreshControl
 } from 'react-native';
 import TopicLsitRow from './TopicListRow';
+import ListFooter from './ListFooter';
 import api from '../api';
 
 class TopicList extends Component {
@@ -18,6 +19,10 @@ class TopicList extends Component {
       ds: dataSource,
       isRefreshing: true
     }
+
+    this._renderTopicRow = this._renderTopicRow.bind(this);
+    this._renderFooter = this._renderFooter.bind(this);
+    this._onRefresh = this._onRefresh.bind(this);
   }
 
   componentDidMount() {
@@ -55,17 +60,23 @@ class TopicList extends Component {
     );
   }
 
+  _renderFooter() {
+    if (!this.state.isRefreshing) {
+      return <ListFooter />;
+    }
+  }
+
   render() {
     console.log(this.state.topics);
     return (
       <ListView
         dataSource={this.state.ds}
         renderRow={this._renderTopicRow}
+        renderFooter={this._renderFooter}
         refreshControl={
           <RefreshControl
-            ref={view => this.refreshControl = view}
             refreshing={this.state.isRefreshing}
-            onRefresh={() => this._onRefresh}
+            onRefresh={this._onRefresh}
           />
         }
       />
