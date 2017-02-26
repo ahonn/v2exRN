@@ -6,6 +6,7 @@ import {
   ListView,
   RefreshControl
 } from 'react-native';
+import TopicLsitRow from './TopicListRow';
 import api from '../api';
 
 class TopicList extends Component {
@@ -47,7 +48,10 @@ class TopicList extends Component {
 
   _renderTopicRow(topic) {
     return (
-      <Text>{topic.title}</Text>
+      <TopicLsitRow
+        key={topic.id}
+        topic={topic}
+      />
     );
   }
 
