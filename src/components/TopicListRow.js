@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
   topic: {
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
 		borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.05)',
   },

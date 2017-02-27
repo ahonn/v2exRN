@@ -2329,10 +2329,6 @@ is-primitive@^2.0.0:
   version "2.0.0"
   resolved "http://r.cnpmjs.org/is-primitive/download/is-primitive-2.0.0.tgz#207bab91638499c07b2adf240a41a87210034575"
 
-is-promise@^2.0.0:
-  version "2.1.0"
-  resolved "http://r.cnpmjs.org/is-promise/download/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
-
 is-property@^1.0.0:
   version "1.0.2"
   resolved "http://r.cnpmjs.org/is-property/download/is-property-1.0.2.tgz#57fe1c4e48474edd65b09911f26b1cd4095dda84"
@@ -3504,15 +3500,9 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/react-deep-force-update/download/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native-html-render@^1.0.5:
-  version "1.0.5"
-  resolved "http://r.cnpmjs.org/react-native-html-render/download/react-native-html-render-1.0.5.tgz#929e7e49ce56a34d2c5073702beedaaa12c2e92f"
-
-react-native-refreshable-listview@^2.0.0-beta4:
-  version "2.0.0-beta4"
-  resolved "http://r.cnpmjs.org/react-native-refreshable-listview/download/react-native-refreshable-listview-2.0.0-beta4.tgz#61cc0b7d15e116c6053937dff1c385bfc10eb3ec"
-  dependencies:
-    is-promise "^2.0.0"
+react-native-pull@^2.0.1:
+  version "2.0.1"
+  resolved "http://r.cnpmjs.org/react-native-pull/download/react-native-pull-2.0.1.tgz#cbf8e87d70ee66a30e1c6b38fe420ce2fe6edc42"
 
 react-native-scrollable-tab-view@^0.7.2:
   version "0.7.2"
