@@ -56,6 +56,7 @@ class TopicList extends Component {
       <TopicLsitRow
         key={topic.id}
         topic={topic}
+        onPressTopic={this.props.jumpTopic}
       />
     );
   }
@@ -67,7 +68,6 @@ class TopicList extends Component {
   }
 
   render() {
-    console.log(this.state.topics);
     return (
       <ListView
         dataSource={this.state.ds}

@@ -1,6 +1,7 @@
-// import tab from './tab';
 const tab = require('./tab');
+const topic = require('./topic');
 
 export default {
-  ...tab
+  ...tab,
+  ...topic
 };

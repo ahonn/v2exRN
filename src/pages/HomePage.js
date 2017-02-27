@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import ScrollableTab from '../components/ScrollableTab';
 import TopicList from '../components/TopicList';
+import TopicPage from './TopicPage';
 import api from '../api';
 
 class HomePage extends Component {
@@ -19,6 +20,16 @@ class HomePage extends Component {
         { name: '好玩', id : 'play'}
       ]
     };
+
+    this._jumpTopic = this._jumpTopic.bind(this);
+  }
+
+  _jumpTopic(topic) {
+    this.props.navigator.push({
+      component: TopicPage,
+      name: 'topic',
+      params: { topic }
+    });
   }
 
   render() {
@@ -31,6 +42,7 @@ class HomePage extends Component {
               key={tab.id}
               tab={tab.id}
               tabLabel={tab.name}
+              jumpTopic={(topic) => this._jumpTopic(topic)}
             />
           );
         })}

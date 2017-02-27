@@ -11,11 +11,11 @@ import { parseImageUrl } from '../utils';
 
 class TopicLsitRow extends Component {
   render() {
-    const { topic } = this.props;
+    const { topic, onPressTopic } = this.props;
     return (
       <TouchableHighlight
         underlayColor={theme.color.lightGrey}
-        onPress={() => console.log('Topic')}>
+        onPress={() => onPressTopic(topic)}>
         <View style={styles.topic}>
           <View style={styles.left}>
             <Image
