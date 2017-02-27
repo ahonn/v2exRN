@@ -3504,6 +3504,10 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/react-deep-force-update/download/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
+react-native-html-render@^1.0.5:
+  version "1.0.5"
+  resolved "http://r.cnpmjs.org/react-native-html-render/download/react-native-html-render-1.0.5.tgz#929e7e49ce56a34d2c5073702beedaaa12c2e92f"
+
 react-native-refreshable-listview@^2.0.0-beta4:
   version "2.0.0-beta4"
   resolved "http://r.cnpmjs.org/react-native-refreshable-listview/download/react-native-refreshable-listview-2.0.0-beta4.tgz#61cc0b7d15e116c6053937dff1c385bfc10eb3ec"

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 1,
-    paddingLeft: 10,
+    paddingLeft: 15,
     justifyContent: 'center',
   },
   title: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   right: {
     flex: 1,
-    paddingRight: 10,
+    paddingRight: 15,
     justifyContent: 'center',
   }
 });

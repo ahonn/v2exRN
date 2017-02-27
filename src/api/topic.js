@@ -31,6 +31,7 @@ export const fetchTopicById = (id) => {
       }
 
       const created = topicEl.find('.gray').text().split('·')[1].trim();
+      const reply = $('#Main .box .cell .gray').text().split(' ')[0];
 
       return {
         id,
@@ -39,6 +40,7 @@ export const fetchTopicById = (id) => {
         author,
         node,
         created,
+        reply
       }
     });
 }
