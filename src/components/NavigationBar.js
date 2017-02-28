@@ -19,8 +19,29 @@ class NavigationBar extends Component {
     backgroundColor: PropTypes.string,
     textColor: PropTypes.string,
     renderLeftButton: PropTypes.func,
-    renderRightButton: PropTypes.func
+    renderRightButton: PropTypes.func,
+    onDbclickTitle: PropTypes.func,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      click: 1,
+    }
+
+    this._onDbclickTitle = this._onDbclickTitle.bind(this);
+  }
+
+  _onDbclickTitle() {
+    if (this.state.click === 1) {
+      this.setState({ click: 0 });
+      setTimeout(() => {
+        this.setState({ click: 1 });
+      }, 500);
+    } else {
+      this.props.onDbclickTitle && this.props.onDbclickTitle();
+    }
+  }
 
   render() {
     const navStyle = {
@@ -35,7 +56,10 @@ class NavigationBar extends Component {
           {this.props.renderLeftButton && this.props.renderLeftButton()}
         </View>
         <View style={styles.title}>
-          <Text style={[styles.titleText, { color: this.props.textColor }]}>
+          <Text
+            style={[styles.titleText, { color: this.props.textColor }]}
+            onPress={this._onDbclickTitle}
+          >
             {this.props.title}
           </Text>
         </View>

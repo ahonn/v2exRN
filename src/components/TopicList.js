@@ -35,9 +35,15 @@ class TopicList extends Component {
     return nextState.topics !== this.state.topics;
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.scrollTop) {
+      this.listView.scrollTo({ y: 0 });
+    }
+  }
+
   _fetchTopics() {
-    const { tab } = this.props;
-    api.fetchTopicsByTab(tab).then(topics => {
+    const { fetchTopics } = this.props;
+    fetchTopics().then(topics => {
       this.setState({
         topics,
         isRefreshing: false,
@@ -79,6 +85,7 @@ class TopicList extends Component {
             onRefresh={this._onRefresh}
           />
         }
+        ref={ref => this.listView = ref}
       />
     );
   }
