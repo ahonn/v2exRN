@@ -248,7 +248,7 @@ babel-core@^6.0.0, babel-core@^6.21.0, babel-core@^6.23.0, babel-core@^6.7.2:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-eslint@7.1.1:
+babel-eslint@7.1.1, babel-eslint@^7.1.1:
   version "7.1.1"
   resolved "http://r.cnpmjs.org/babel-eslint/download/babel-eslint-7.1.1.tgz#8a6a884f085aa7060af69cfc77341c2f99370fb2"
   dependencies:
@@ -1601,9 +1601,9 @@ eslint@3.12.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^3.16.0:
-  version "3.16.0"
-  resolved "http://r.cnpmjs.org/eslint/download/eslint-3.16.0.tgz#4a468ab93618a9eb6e3f1499038b38851f828630"
+eslint@^3.16.1:
+  version "3.16.1"
+  resolved "http://r.cnpmjs.org/eslint/download/eslint-3.16.1.tgz#9bc31fc7341692cf772e80607508f67d711c5609"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
