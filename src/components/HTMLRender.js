@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {
+  View,
+  Text,
   Image,
   Dimensions,
   StyleSheet,
+  ScrollView
 } from 'react-native';
+import entities from 'entities';
 import HTMLView from 'react-native-htmlview';
 
 const { width, height } = Dimensions.get('window');
@@ -16,12 +20,14 @@ class HTMLRender extends Component {
   }
 
   _renderNode(node, index, list) {
-    if (node.type == 'tag' && node.name == 'img') {
-      const source = {
-        uri: node.attribs.src,
-      };
+    if (node.type == 'tag') {
+      if (node.name == 'img') {
+        const source = {
+          uri: node.attribs.src,
+        };
 
-      return <Image key={index} source={source} style={styles.image} />;
+        return <Image key={index} source={source} style={styles.image} />;
+      }
     }
     return undefined;
   }
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
   image: {
     width: width - 30,
     height: height - 30,
-  }
+  },
 });
 
 export default HTMLRender;

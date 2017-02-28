@@ -14,7 +14,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       defaultTab: {
-        name: '全部',
+        name: 'V2Explorer',
         id: 'all'
       },
       scrollTop: false,
