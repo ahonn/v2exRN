@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const url = require('./url');
+const url = require('./config/url');
 
 // TODO: some topic need login, return null without login.
 export const fetchTopicById = (id) => {
@@ -31,7 +31,7 @@ export const fetchTopicById = (id) => {
       }
 
       const created = topicEl.find('.gray').text().split('·')[1].trim();
-      const reply = $('#Main .box .cell .gray').text().split(' ')[0];
+      const reply = $('#Main .box .cell .gray').text().split(' ')[0] || 0;
 
       return {
         id,

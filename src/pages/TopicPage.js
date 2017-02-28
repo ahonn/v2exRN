@@ -10,8 +10,9 @@ import {
   InteractionManager,
   TouchableWithoutFeedback
 } from 'react-native';
-import NavigationBar from '../components/NavigationBar';
 import Icon from 'react-native-vector-icons/Ionicons';
+import HTMLRender from '../components/HTMLRender';
+import NavigationBar from '../components/NavigationBar';
 import theme from '../config/theme';
 import { parseImageUrl } from '../utils';
 import api from '../api';
@@ -23,8 +24,6 @@ class TopicPage extends Component {
       topic: props.topic,
       isRefreshing: true,
     }
-
-    this._onPressBack = this._onPressBack.bind(this);
   }
 
   componentWillMount() {
@@ -43,10 +42,6 @@ class TopicPage extends Component {
     });
   }
 
-  _onPressBack() {
-    this.props.navigator.pop();
-  }
-
   _renderNavigationBar() {
     const isiOS = Platform.OS === 'ios';
     const iconName = isiOS ? 'ios-arrow-back' : 'md-arrow-back';
@@ -58,7 +53,7 @@ class TopicPage extends Component {
         backgroundColor={theme.color.theme}
         renderLeftButton={() => {
           return (
-            <TouchableWithoutFeedback onPress={this._onPressBack}>
+            <TouchableWithoutFeedback onPress={() => this.props.navigator.pop()}>
               <View style={navStyles.back}>
                 <Icon name={iconName} size={22} color={theme.color.white} />
                 { isiOS && <Text style={navStyles.backText}>返回</Text>}
@@ -98,7 +93,7 @@ class TopicPage extends Component {
                     <Icon name='md-arrow-dropright' size={12} color={theme.color.theme} />
                     <Text style={styles.node}>{topic.node.name}</Text>
                   </View>
-                  { topic.created && <Text style={styles.created}>发布于：{topic.created}</Text>}
+                  { topic.created && <Text style={styles.created}>{topic.created}</Text>}
                 </View>
                 <View style={styles.right}>
                   <Text style={styles.reply}>{topic.reply}</Text>
@@ -106,6 +101,7 @@ class TopicPage extends Component {
               </View>
             </View>
             <View style={styles.content}>
+              <HTMLRender value={topic.content} />
             </View>
           </View>
         </ScrollView>

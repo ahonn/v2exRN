@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import NavigationBar from '../components/NavigationBar';
 import TopicList from '../components/TopicList';
-import TopicPage from './TopicPage';
 import theme from '../config/theme';
 import api from '../api';
 
@@ -21,7 +20,6 @@ class HomePage extends Component {
       scrollTop: false,
     };
 
-    this._jumpTopic = this._jumpTopic.bind(this);
     this._fetchTopics = this._fetchTopics.bind(this);
     this._onDbclickTitle = this._onDbclickTitle.bind(this);
   }
@@ -31,14 +29,6 @@ class HomePage extends Component {
     setTimeout(() => {
       this.setState({ scrollTop: false });
     }, 500);
-  }
-
-  _jumpTopic(topic) {
-    this.props.navigator.push({
-      component: TopicPage,
-      name: 'topic',
-      params: { topic }
-    });
   }
 
   _fetchTopics() {
@@ -59,7 +49,7 @@ class HomePage extends Component {
         <TopicList
           scrollTop={scrollTop}
           fetchTopics={this._fetchTopics}
-          jumpTopic={this._jumpTopic}
+          navigator={this.props.navigator}
         />
       </View>
     );

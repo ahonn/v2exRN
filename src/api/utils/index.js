@@ -1,7 +1,4 @@
-const cheerio = require('cheerio');
-
-export const getTopicsFromHTML = (body) => {
-   const $ = cheerio.load(body);
+export const getTopicsFromHTML = ($) => {
    let topics = [];
 
    $('.item').each((i, el) => {
@@ -23,11 +20,11 @@ export const getTopicsFromHTML = (body) => {
       const node = {
         name: nodeEl.text(),
         id: nodeEl.attr('href').replace('/go/', '')
-      }
+      };
 
       const lasttime = info[2] && info[2].trim() || '';
 
-      topics.push({id, title, author, reply, node, author, lasttime});
+      topics.push({id, title, author, reply, node, lasttime});
    });
    return topics;
 };

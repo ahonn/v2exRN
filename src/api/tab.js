@@ -1,13 +1,11 @@
-const cheerio = require('cheerio');
+const url = require('./config/url');
+const request = require('./utils/request');
 const utils = require('./utils');
-const url = require('./url');
 
 export const fetchAllTab = () => {
-  return fetch(url.root)
-    .then(res => {
-      return res.text()
-    }).then(body => {
-      const $ = cheerio.load(body);
+  const root_url = url.root;
+  return request.get(root_url)
+    .then($ => {
       let tabs = [];
 
       $('#Tabs a').each((i, el) => {
@@ -25,21 +23,9 @@ export const fetchAllTab = () => {
 
 export const fetchTopicsByTab = (tab) => {
   const tab_url = url.tab.replace('{{tab}}', tab);
-  return fetch(tab_url)
-    .then(res => {
-      return res.text()
-    }).then(body => {
-      return utils.getTopicsFromHTML(body);
+  return request.get(tab_url)
+    .then($ => {
+      return utils.getTopicsFromHTML($);
     });
 };
 
-export const fetchRecentTopics = (page = 1) => {
-  const recent_url = url.recent.replace('{{paeg}}', page);
-
-  return fetch(recent_url)
-    .then(res => {
-      return res.text();
-    }).then(body => {
-      return utils.getTopicsFromHTML(body);
-    });
-};

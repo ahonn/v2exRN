@@ -6,6 +6,7 @@ import {
   ListView,
   RefreshControl
 } from 'react-native';
+import TopicPage from '../pages/TopicPage';
 import TopicLsitRow from './TopicListRow';
 import ListFooter from './ListFooter';
 import api from '../api';
@@ -23,6 +24,7 @@ class TopicList extends Component {
     this._renderTopicRow = this._renderTopicRow.bind(this);
     this._renderFooter = this._renderFooter.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
+    this._onPressTopic = this._onPressTopic.bind(this);
   }
 
   componentDidMount() {
@@ -57,12 +59,20 @@ class TopicList extends Component {
     this._fetchTopics();
   }
 
+  _onPressTopic(topic) {
+    this.props.navigator.push({
+      component: TopicPage,
+      name: 'topic',
+      params: { topic }
+    });
+  }
+
   _renderTopicRow(topic) {
     return (
       <TopicLsitRow
         key={topic.id}
         topic={topic}
-        onPressTopic={this.props.jumpTopic}
+        onPressTopic={this._onPressTopic}
       />
     );
   }

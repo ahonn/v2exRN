@@ -3500,9 +3500,9 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/react-deep-force-update/download/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native-pull@^2.0.1:
-  version "2.0.1"
-  resolved "http://r.cnpmjs.org/react-native-pull/download/react-native-pull-2.0.1.tgz#cbf8e87d70ee66a30e1c6b38fe420ce2fe6edc42"
+react-native-htmlview@^0.5.0:
+  version "0.5.0"
+  resolved "http://r.cnpmjs.org/react-native-htmlview/download/react-native-htmlview-0.5.0.tgz#1f5fa3396259c1ae031804bf2589f6311e54c0a7"
 
 react-native-scrollable-tab-view@^0.7.2:
   version "0.7.2"
